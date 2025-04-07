@@ -54,5 +54,39 @@ public class Main {
         } catch (InterruptedException e) {
             System.out.println("Main thread interrupted: " + e.getMessage());
         }
+
+        // Runnable example self practice
+        // Create two threads using Runnable interface With lempda expression
+
+        Runnable runnable1 = () -> {
+            for (int i = 0; i < 5; i++) {
+                System.out.println("Runnable thread: " + i);
+                try {
+                    Thread.sleep(100);
+                } catch (InterruptedException e) {
+                    System.out.println("Runnable thread interrupted: " + e.getMessage());
+                }
+            }
+        };
+        Runnable runnable2 = () -> {
+            for (int i = 0; i < 5; i++) {
+                System.out.println("Runnable thread: " + i);
+                try {
+                    Thread.sleep(100);
+                } catch (InterruptedException e) {
+                    System.out.println("Runnable thread interrupted: " + e.getMessage());
+                }
+            }
+        };
+        Thread thread1 = new Thread(runnable1);
+        Thread thread2 = new Thread(runnable2);
+        thread1.start();
+        thread2.start();
+        try {
+            thread1.join();
+            thread2.join();
+        } catch (InterruptedException e) {
+            System.out.println("Main thread interrupted: " + e.getMessage());
+        }
     }
 }
